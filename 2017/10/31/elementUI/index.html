@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="技术," />
 
 
 
@@ -84,12 +84,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="rockToDog">
-<meta property="og:url" content="http://yoursite.com/tags/电影/index.html">
+<meta name="description" content="一点经验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elementUI中碰到的一些问题">
+<meta property="og:url" content="http://yoursite.com/2017/10/31/elementUI/index.html">
 <meta property="og:site_name" content="rockToDog">
+<meta property="og:description" content="一点经验">
+<meta property="og:updated_time" content="2017-10-31T14:21:45.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rockToDog">
+<meta name="twitter:title" content="elementUI中碰到的一些问题">
+<meta name="twitter:description" content="一点经验">
 
 
 
@@ -110,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/电影/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/31/elementUI/"/>
 
-  <title> 标签: 电影 | rockToDog </title>
+  <title> elementUI中碰到的一些问题 | rockToDog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -221,74 +225,131 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        电影
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/26/七月与安生/" itemprop="url">
-              
-                <span itemprop="name">七月与安生</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-26T22:36:05+08:00"
-              content="2016-09-26" >
-          09-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/25/割腕者的天堂/" itemprop="url">
-              
-                <span itemprop="name">割腕者的天堂</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-25T08:20:57+08:00"
-              content="2016-09-25" >
-          09-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                elementUI中碰到的一些问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-31T21:37:02+08:00" content="2017-10-31">
+              2017-10-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一点经验<br><a id="more"></a></p>
+<p>###项目<br>来到新公司不久，也是新起的项目，一个后台管理平台，我来的时候已经基本成形了，基本就是套了下vue-admin，也是第一次正式在工作上面使用vue，确实很简洁，但是写了大概几天，感觉还是有些随意，水平高的，经验丰富的选手能用的很好，经验稍微欠缺一点的，如果项目稍微复杂一点，可能就比较难看了<br>项目UI框架用的是elementUI，还是很好用的，但是比较坑的是，我也不知道为什么起项的时候2.0版本都已经出来了，但是项目上面用的居然还是1.1版本的，所以就陆陆续续的有一些坑出来了</p>
+<p>###datepicker的问题<br>测试小妹妹说在选择日期的时候，如果是2月的话，第一次选中后，显示选中日期的输入框里面显示的3月的同一天，略微有些懵逼，今天看了一下午，最后确定是JS中日期方法setMonth的问题，具体代码如下<br>在elmentUI的datepicker包里面，找到date.vue文件，里面的handleDatePick方法有一段对this.date的设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.date.setFullYear(value.getFullYear());</div><div class="line">this.date.setMonth(value.getMonth());</div><div class="line">this.date.setDate(value.getDate());</div></pre></td></tr></table></figure></p>
+<p>断点打到这个地方，等setMonth完了之后，打印出this.date.getMonth()的值，是2，但是明明value.getMonth()获取到的值是1，为啥设置的set的是1，get到的变成2了呢？MDN上有关于setMonth方法的说明</p>
+<blockquote>
+<p>The current day of month will have an impact on the behaviour of this method. Conceptually it will add the number of days given by the current day of the month to the 1st day of the new month specified as the parameter, to return the new date. For example, if the current value is 31st August 2016, calling setMonth with a value of 1 will return 2nd March 2016. This is because in 2016 February had 29 days.<br>而且下面还贴心的给出了例子。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var endOfMonth = new Date(2016, 7, 31);</div><div class="line">endOfMonth.setMonth(1);</div><div class="line">console.log(endOfMonth); //Wed Mar 02 2016 00:00:00</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>大概意思就是说如果现在是31号，设置月份为2月，日期就变成了2月31号，这明显是不对的，是因为2月只有29天，所以就到了3月份；</p>
+<p>所以直接修改为this.date.setMonth(value.getMonth(), 1)，试了下，没问题了</p>
+<p>回家后看了下1.4.6版本的代码，这个地方果然已经修改成了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">this.date.setFullYear(value.getFullYear());</div><div class="line">this.date.setMonth(value.getMonth(), value.getDate());</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/08/angular/" rel="next" title="angular2工程构建">
+                <i class="fa fa-chevron-left"></i> angular2工程构建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -296,6 +357,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +380,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -359,6 +433,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -455,6 +540,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
