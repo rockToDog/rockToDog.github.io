@@ -1,0 +1,576 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="技术," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="没跑两天数据，知乎快把我账号封了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫">
+<meta property="og:url" content="http://yoursite.com/2016/10/08/spider/index.html">
+<meta property="og:site_name" content="rockToDog">
+<meta property="og:description" content="没跑两天数据，知乎快把我账号封了">
+<meta property="og:image" content="http://yoursite.com/2016/10/08/spider/1.png">
+<meta property="og:updated_time" content="2017-11-30T14:39:30.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="爬虫">
+<meta name="twitter:description" content="没跑两天数据，知乎快把我账号封了">
+<meta name="twitter:image" content="http://yoursite.com/2016/10/08/spider/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/08/spider/"/>
+
+  <title> 爬虫 | rockToDog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">rockToDog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                爬虫
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T00:05:02+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>没跑两天数据，知乎快把我账号封了<br><a id="more"></a><br>经常看见知乎上面有人说某个答案是买赞什么的，想着是不是能够从技术方面分析一下呢，想了一下，主要可以从两个方向入手，一个是看这个答案都是那些人在点赞，特别是看一下三无号点赞的占比，另一个就是看一下点赞数增长的时间线，特别是看一下三无号点赞的时间线。如果一个答案三无号占比比较高，且三无号点赞时间比较集中的话，基本可以认定是买赞，本来以为实现起来是比较简单的，但是没想到还是有些麻烦的，主要是频繁请求知乎会检测到，需要手动输入验证码，才能继续请求</p>
+<h4 id="第一步，先看看应该怎么获取到某个答案都有那些人点赞"><a href="#第一步，先看看应该怎么获取到某个答案都有那些人点赞" class="headerlink" title="第一步，先看看应该怎么获取到某个答案都有那些人点赞"></a>第一步，先看看应该怎么获取到某个答案都有那些人点赞</h4><p>登陆知乎，随便点开一个答案，在答主的信息下面会出现某某某等多少人赞同了该回答，我们点击这个链接，会弹出一个对话框，查看http请求，会发现一个类似下面的api接口 <a href="https://www.zhihu.com/api/v4/answers/266849022/voters?include=data%5B*%5D.answer_count%2Carticles_count%2Cfollower_count%2Cgender%2Cis_followed%2Cis_following%2Cbadge%5B%3F(type%3Dbest_answerer)%5D.topics&amp;offset=0&amp;limit=10" target="_blank" rel="external">https://www.zhihu.com/api/v4/answers/266849022/voters?include=data%5B*%5D.answer_count%2Carticles_count%2Cfollower_count%2Cgender%2Cis_followed%2Cis_following%2Cbadge%5B%3F(type%3Dbest_answerer)%5D.topics&amp;offset=0&amp;limit=10</a><br>然后向下滚动滚动条，会发现同样的请求，所以第一步应该是通过修改offset参数不断请求该接口获取所有点赞用户，代码很简单，先是在浏览器上面用tamperMonkey运行的，后面修改了下放到node上面跑了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">function watch(obj, cb)&#123;</div><div class="line">    Object.defineProperty(obj, &apos;count&apos;, &#123;</div><div class="line">        enumerable: false,</div><div class="line">        configurable: false,</div><div class="line">        get: function () &#123;</div><div class="line">            return this.n;</div><div class="line">        &#125;,</div><div class="line">        set: function (newValue) &#123;</div><div class="line">            cb(newValue, this.n)</div><div class="line">            this.n = newValue;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function getDataByItemId(request, response) &#123;</div><div class="line">    let dataList = []</div><div class="line">    let obj = &#123; n: 0 &#125;</div><div class="line">    let n = Math.floor(request.query.maxLength / 20) + 1</div><div class="line"></div><div class="line">    watch(obj, function(newValue, oldValue)&#123;</div><div class="line">        if (newValue == n) &#123;</div><div class="line">            urlArr = dataList.map(function (obj) &#123;</div><div class="line">                return `https://www.zhihu.com/api/v4/members/$&#123;obj.url_token&#125;/activities?limit=20&amp;desktop=True`</div><div class="line">            &#125;)</div><div class="line">            response.json(dataList)</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    for (var i = 0; i &lt; n; i++) &#123;</div><div class="line">        var url = `https://www.zhihu.com/api/v4/answers/$&#123;request.query.itemId&#125;/voters?include=data%5B*%5D.answer_count%2Carticles_count%2Cfollower_count%2Cgender%2Cis_followed%2Cis_following%2Cbadge%5B%3F(type%3Dbest_answerer)%5D.topics&amp;offset=$&#123;i * 20&#125;&amp;limit=$&#123;i * 20 + 20&#125;`;</div><div class="line">        instance.get(url).then(function (res) &#123;</div><div class="line">            let data = JSON.parse(res.data).data</div><div class="line">            data.forEach(function (element) &#123;</div><div class="line">                dataList.push(element)</div><div class="line">            &#125;);</div><div class="line">            obj.count++</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>第一步首先实现一个简单的watch函数，因为后面用for循环去不断发送请求，需要判断是否已经请求完了所有的数据，这个地方也可以用Promise.all，但是遇到赞同比较多的情况，可能会挂掉，第一步已经基本实现了，在前台用highCharts做了一下简单的可视化，并且跑了几个看起来比较像买赞的答案，发现实际并非我自己想的那样，反而是在一些比较情绪化，鸡汤的答案下面，三无号的占比非常之高，有些好几千赞同的答案三无号占比有三分之一，这个，我觉得倒不一定是买赞，主要的原因还是知乎用户下潜</p>
+<h4 id="第二部-获取每个用户都是在什么时间点赞的"><a href="#第二部-获取每个用户都是在什么时间点赞的" class="headerlink" title="第二部 获取每个用户都是在什么时间点赞的"></a>第二部 获取每个用户都是在什么时间点赞的</h4><p>我原来以为第一步爬取到的数据中会有每个人的点赞时间，但是看了下，很失望，没办法，只能进入到每个人的主页去，然后从获取到的timeLine数据，看看该用户是在什么时候给这个答案进行点赞的<br>点到某个点了赞同的用户的首页，能看到一个类似下面请求的链接<br><a href="https://www.zhihu.com/api/v4/members/skynewborn/activities?limit=10&amp;after_id=1510189046&amp;desktop=True" target="_blank" rel="external">https://www.zhihu.com/api/v4/members/skynewborn/activities?limit=10&amp;after_id=1510189046&amp;desktop=True</a><br>研究了半天这个api，没有搞明白那个after_id是从那来的，但是很明确应该是个时间戳，看了下返回数据，类似下面这样<br><img src="/2016/10/08/spider/1.png" alt="1"><br>我们在答案页面能获取到上面圈出来的这个id，只需要不断请求，直到从获取到的数据中能找到这个id为止，这个里面暂时不考虑重复操作的问题，实际代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">async function startGetDataByVoterTime(request, response) &#123;</div><div class="line">    //运行时间比较长，先返回结果，等一会请求再返回数据</div><div class="line">    response.json(&apos;start.....&apos;)</div><div class="line">    //循环所有链接</div><div class="line">    for (let index = 0; index &lt; urlArr; index++) &#123;</div><div class="line">        let url = urlArr[index];</div><div class="line">        while (url !== &apos;&apos;) &#123;</div><div class="line">            let asyncGetData = function () &#123;</div><div class="line">                return instance.get(url).then(res =&gt; res.data)</div><div class="line">            &#125;</div><div class="line">            //await timeout(3)</div><div class="line">            try &#123;</div><div class="line">                const data = await asyncGetData()</div><div class="line">                voterData.push(data)</div><div class="line">                //根据返回的数据中是否含有data.paging.next来判断是否继续请求</div><div class="line">                data.paging.next ? url = data.paging.next : url = &apos;&apos;</div><div class="line">            &#125; catch (error) &#123;</div><div class="line">                console.log(error)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    isGetVoterDataEnd = true</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>期间试了下，返回401，然后直接把浏览器上面的request header拷过来，重新跑，请求才通了，应该是和header里面的authorization有关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">let instance = axios.create(&#123;</div><div class="line">    baseURL: &apos;https://some-domain.com/api/&apos;,</div><div class="line">    timeout: 1000,</div><div class="line">    headers: &#123;</div><div class="line">        &apos;Host&apos;: &apos;www.zhihu.com&apos;,</div><div class="line">        &apos;Connection&apos;: &apos;keep-alive&apos;,</div><div class="line">        &apos;accept&apos;: &apos;application/json, text/plain, */*&apos;,</div><div class="line">        &apos;X-UDID&apos;: &apos;ABDCp9RahCmww=&apos;,</div><div class="line">        &apos;authorization&apos;: &apos;Bearerce08596ee8935206&apos;,</div><div class="line">        &apos;X-API-VERSION&apos;: &apos;3.0.40&apos;,</div><div class="line">        &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36&apos;,</div><div class="line">        &apos;Referer&apos;: &apos;https://www.zhihu.com/people/MQQQQQ/activities&apos;,</div><div class="line">        &apos;Accept-Encoding&apos;: &apos;gzip, deflate, br&apos;,</div><div class="line">        &apos;Accept-Language&apos;: &apos;zh-CN,zh;q=0.9&apos;,</div><div class="line">        &apos;Cookie&apos;: zhihuCookie</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>以上基本算是能跑通了，但是问题还有很多，最大的问题就是效率，假设一个答案如果有一万个人赞同，一万个人的个人数据倒是比较容易，发五百次请求就搞定了，但是要获取每个人的timeline数据，假设每个人二百条timeline数据，那就需要100 * 500 就是五万次请求才能搞定，一个答案五万次请求，那随随便便跑几个答案，知乎封我账号ip那是肯定的了，所以要想想怎么优化一下</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/08/杂/" rel="next" title="杂">
+                <i class="fa fa-chevron-left"></i> 杂
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/08/angular/" rel="prev" title="angular2工程构建">
+                angular2工程构建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rockToDog" />
+          <p class="site-author-name" itemprop="name">rockToDog</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步，先看看应该怎么获取到某个答案都有那些人点赞"><span class="nav-number">1.</span> <span class="nav-text">第一步，先看看应该怎么获取到某个答案都有那些人点赞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二部-获取每个用户都是在什么时间点赞的"><span class="nav-number">2.</span> <span class="nav-text">第二部 获取每个用户都是在什么时间点赞的</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rockToDog</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
