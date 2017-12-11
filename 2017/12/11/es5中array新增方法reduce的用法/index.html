@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="代替提交form下载文件的办法">
+<meta name="description" content="es5中array新增方法reduce的用法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代替提交form下载文件的办法">
-<meta property="og:url" content="http://yoursite.com/2017/11/26/下载/index.html">
+<meta property="og:title" content="es5中array新增方法reduce的用法">
+<meta property="og:url" content="http://yoursite.com/2017/12/11/es5中array新增方法reduce的用法/index.html">
 <meta property="og:site_name" content="rockToDog">
-<meta property="og:description" content="代替提交form下载文件的办法">
-<meta property="og:updated_time" content="2017-11-26T14:49:40.352Z">
+<meta property="og:description" content="es5中array新增方法reduce的用法">
+<meta property="og:updated_time" content="2017-12-11T14:49:40.902Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="代替提交form下载文件的办法">
-<meta name="twitter:description" content="代替提交form下载文件的办法">
+<meta name="twitter:title" content="es5中array新增方法reduce的用法">
+<meta name="twitter:description" content="es5中array新增方法reduce的用法">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/26/下载/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/11/es5中array新增方法reduce的用法/"/>
 
-  <title> 代替提交form下载文件的办法 | rockToDog </title>
+  <title> es5中array新增方法reduce的用法 | rockToDog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +246,7 @@
             
             
               
-                代替提交form下载文件的办法
+                es5中array新增方法reduce的用法
               
             
           </h1>
@@ -258,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-26T00:05:02+08:00" content="2017-11-26">
-              2017-11-26
+            <time itemprop="dateCreated" datetime="2017-12-11T00:05:02+08:00" content="2017-12-11">
+              2017-12-11
             </time>
           </span>
 
@@ -286,11 +286,9 @@
       
 
       
-        <p>代替提交form下载文件的办法<br><a id="more"></a></p>
-<p>项目上需要做一个下载excel的功能，之前也没有多想，就通过提交form表单，隐藏iframe，做到界面无刷新下载文件，但是之后就发现有点问题，因为再session失效的情况下，点击下载按钮不应该继续下载文件，而是跳转到登录页面，原来的方式就有点问题了，因为项目里面并没有使用jquery一系列的东西，也不想因为这点东西就把jquery弄进来，因为前几天弄图片上传时候，看了下elementUI的upload组件的源码，发现里面有用到blob，URL.createObjectURL实现过图片预览，又查了下blob相关的东西，发现是可以用提交ajax来实现，废话不多说，先上代码为敬<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">axios(&#123;url:&apos;http://somehost/somefile.zip&apos;, method:&apos;post&apos;, responseType: &apos;blob&apos;&#125;)</div><div class="line">.then((&#123;data&#125;) =&gt; &#123;</div><div class="line">    var elink = document.createElement(&apos;a&apos;);</div><div class="line">    var url = window.URL.createObjectURL(data);</div><div class="line">    var filename = &apos;template.xlsx&apos;;</div><div class="line">    elink.href = url;</div><div class="line">    elink.download = filename;</div><div class="line">    elink.click();</div><div class="line">    window.URL.revokeObjectURL(url);</div><div class="line">    document.removeChild(elink);</div><div class="line">&#125;))</div></pre></td></tr></table></figure></p>
-<p>原来是这么写的，但是有些问题，可以下载，但是下载下来的文件打开提示文件已损坏，后又做如下修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">axios(&#123;url:&apos;http://127.0.0.1:3000/download&apos;, method:&apos;post&apos;, responseType: &apos;blob&apos;&#125;)</div><div class="line">.then((&#123;data&#125;) =&gt; &#123;</div><div class="line">    var blob = new Blob([data], &#123;type : &apos;application/octet-stream&apos;&#125;);</div><div class="line">    var elink = document.createElement(&apos;a&apos;);</div><div class="line">    var url = window.URL.createObjectURL(blob);</div><div class="line">    var filename = &apos;template.xlsx&apos;;</div><div class="line">    elink.href = url;</div><div class="line">    elink.download = filename;</div><div class="line">    elink.click();</div><div class="line">    window.URL.revokeObjectURL(url);</div><div class="line">    document.removeChild(elink);</div><div class="line">&#125;))</div></pre></td></tr></table></figure></p>
-<p>一次点亮，成功下载并且打开也没有乱码什么的问题，但是还有一个问题，session失效后，后台返回的是json数据，但是responseType设置成blob，返回回来的值就不能直接读了，所以又做如下修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">axios(&#123;url:&apos;http://127.0.0.1:3000/download&apos;, method:&apos;post&apos;, responseType: &apos;blob&apos;&#125;)</div><div class="line">.then((&#123;data&#125;) =&gt; &#123;</div><div class="line">    var fileReader = new FileReader()</div><div class="line">    fileReader.onloadend = (e) =&gt; &#123;</div><div class="line">        //先判断是否session失效</div><div class="line">        if(e.target.result.indexOf(&apos;请重新登陆&apos;))&#123;</div><div class="line">            this.$router.push(&apos;/login&apos;)</div><div class="line">            return</div><div class="line">        &#125;</div><div class="line">        var blob = new Blob([data], &#123;type : &apos;application/octet-stream&apos;&#125;)</div><div class="line">        var filename = &apos;template.xlsx&apos;</div><div class="line">        //判断是否ie</div><div class="line">        if(window.navigator.msSaveOrOpenBlob)&#123;</div><div class="line">            navigator.msSaveOrOpenBlob(blob, filename)</div><div class="line">            return</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var elink = document.createElement(&apos;a&apos;)</div><div class="line">        var url = window.URL.createObjectURL(blob)</div><div class="line">        elink.href = url</div><div class="line">        elink.download = filename</div><div class="line">        elink.click()</div><div class="line">        window.URL.revokeObjectURL(url)</div><div class="line">        document.removeChild(elink)</div><div class="line">    &#125;;</div><div class="line">    fileReader.readAsText(data)</div><div class="line">&#125;))</div><div class="line">.catch((error) =&gt; &#123;</div><div class="line">    console.log(error)</div><div class="line">    this.$notify()</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>具体的api，有兴趣的可以上MDN查看，还是要好好学习下</p>
+        <p>es5中array新增方法reduce的用法<br><a id="more"></a><br>这几天暂时被借调到另外一个项目组去，去了就跟着参加评审，开始弄需求，需要在别人的代码上改，今天看见一个可以更加简洁的代码片段，大概如下<br>需要实现的功能是，一个数组对象中，根据对象中某一个key的value值最小的那个，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//找出数组中x值最小的那个对象，也就是index为2的那个，即&#123;x:2,y:6&#125;</div><div class="line">let arr = [</div><div class="line">    &#123;</div><div class="line">        x:1,</div><div class="line">        y:2</div><div class="line">    &#125;,&#123;</div><div class="line">        x:16,</div><div class="line">        y:6</div><div class="line">    &#125;,&#123;</div><div class="line">        x:2,</div><div class="line">        y:6</div><div class="line">    &#125;,&#123;</div><div class="line">        x:9,</div><div class="line">        y:3</div><div class="line">    &#125;,</div><div class="line">]</div><div class="line"></div><div class="line">//原来的写法</div><div class="line">//先把所有的x值放到一个数组里面</div><div class="line">let arrX = []</div><div class="line">for(var i = 0; i &lt; arr.length; i++)&#123;</div><div class="line">    arrX.push(arr[i].x)</div><div class="line">&#125;</div><div class="line"></div><div class="line">//找出所有x中最小的那个值的index</div><div class="line">let minX = arrX[0]</div><div class="line">let index = 0</div><div class="line">for(var i = 0; i &lt; arrX.length; i++)&#123;</div><div class="line">    if (arrX[i] &lt; minX) &#123;</div><div class="line">        minX = arrX[i]</div><div class="line">        index = i</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//根据index获取x最小的那个对象</div><div class="line">let minObj = arr[index]</div></pre></td></tr></table></figure></p>
+<p>这么写有问题么，其实逻辑什么的也没啥问题，但是就是看着麻烦，类似上面的这种还有很多，其实项目里面也用了babel，es6的语法都可以放心大胆的写了，但是实际上还是有很多es5语法可以一部到位的，结果还是自己写了一大堆实现，看着确实有点累，尤其是逻辑稍微复杂一些的场景下，代码能精简就要精简，虽然是语法糖，但是起码也好看很多啊，我自己简单实现了一下上面的需求，代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">let arr = [</div><div class="line">    &#123;</div><div class="line">        x:1,</div><div class="line">        y:2</div><div class="line">    &#125;,&#123;</div><div class="line">        x:16,</div><div class="line">        y:6</div><div class="line">    &#125;,&#123;</div><div class="line">        x:2,</div><div class="line">        y:6</div><div class="line">    &#125;,&#123;</div><div class="line">        x:9,</div><div class="line">        y:3</div><div class="line">    &#125;,</div><div class="line">]</div><div class="line"></div><div class="line">let minObj = arr.reduce((pre, cur) =&gt; &#123;</div><div class="line">    return cur.x &lt; pre.x ? cur : pre</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>其实还想起来一个，就是上次讲需求，a，b两个请求，a请求特别慢，但是b请求的处理逻辑需要用到a请求的返回结果，又觉得如果把b请求写到a请求的回调里面效率比较低，写了个轮询去不断的查看a请求的有没有结束，听完不太理解，这个为啥不能用promise.all去并发呢，再或者为啥不用Object.definepropety写在get set里面<br>现在成天讲es6，es7，确实es6改变很大，确实需要花大力气学习，但是基本功也不能懈怠，有则改之无则加勉把。</p>
 
       
     </div>
@@ -322,17 +320,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/31/elementUI/" rel="next" title="elementUI中碰到的一些问题">
-                <i class="fa fa-chevron-left"></i> elementUI中碰到的一些问题
+              <a href="/2017/11/26/下载/" rel="next" title="代替提交form下载文件的办法">
+                <i class="fa fa-chevron-left"></i> 代替提交form下载文件的办法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/11/es5中array新增方法reduce的用法/" rel="prev" title="es5中array新增方法reduce的用法">
-                es5中array新增方法reduce的用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
