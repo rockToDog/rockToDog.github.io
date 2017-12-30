@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="es5中array新增方法reduce的用法">
+<meta name="description" content="puppeteer是google发布的可以用来操作chrome的node库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="es5中array新增方法reduce的用法">
-<meta property="og:url" content="http://yoursite.com/2017/12/11/es5中array新增方法reduce的用法/index.html">
+<meta property="og:title" content="puppeteer初试">
+<meta property="og:url" content="http://yoursite.com/2017/12/30/puppeteer初试/index.html">
 <meta property="og:site_name" content="rockToDog">
-<meta property="og:description" content="es5中array新增方法reduce的用法">
-<meta property="og:updated_time" content="2017-12-30T02:19:28.204Z">
+<meta property="og:description" content="puppeteer是google发布的可以用来操作chrome的node库">
+<meta property="og:updated_time" content="2017-12-30T03:12:03.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="es5中array新增方法reduce的用法">
-<meta name="twitter:description" content="es5中array新增方法reduce的用法">
+<meta name="twitter:title" content="puppeteer初试">
+<meta name="twitter:description" content="puppeteer是google发布的可以用来操作chrome的node库">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/11/es5中array新增方法reduce的用法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/30/puppeteer初试/"/>
 
-  <title> es5中array新增方法reduce的用法 | rockToDog </title>
+  <title> puppeteer初试 | rockToDog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +246,7 @@
             
             
               
-                es5中array新增方法reduce的用法
+                puppeteer初试
               
             
           </h1>
@@ -258,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-11T00:05:02+08:00" content="2017-12-11">
-              2017-12-11
+            <time itemprop="dateCreated" datetime="2017-12-30T11:03:02+08:00" content="2017-12-30">
+              2017-12-30
             </time>
           </span>
 
@@ -286,9 +286,7 @@
       
 
       
-        <p>es5中array新增方法reduce的用法<br><a id="more"></a><br>这几天暂时被借调到另外一个项目组去，去了就跟着参加评审，开始弄需求，需要在别人的代码上改，今天看见一个可以更加简洁的代码片段，大概如下<br>需要实现的功能是，一个数组对象中，根据对象中某一个key的value值最小的那个，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//找出数组中x值最小的那个对象，也就是index为2的那个，即&#123;x:2,y:6&#125;</div><div class="line">let arr = [</div><div class="line">    &#123;</div><div class="line">        x:1,</div><div class="line">        y:2</div><div class="line">    &#125;,&#123;</div><div class="line">        x:16,</div><div class="line">        y:6 </div><div class="line">    &#125;,&#123;</div><div class="line">        x:2,he</div><div class="line">        y:6</div><div class="line">    &#125;,&#123;</div><div class="line">        x:9,</div><div class="line">        y:3</div><div class="line">    &#125;,</div><div class="line">]</div><div class="line"></div><div class="line">//原来的写法</div><div class="line">//先把所有的x值放到一个数组里面</div><div class="line">let arrX = []</div><div class="line">for(var i = 0; i &lt; arr.length; i++)&#123;</div><div class="line">    arrX.push(arr[i].x)</div><div class="line">&#125;</div><div class="line"></div><div class="line">//找出所有x中最小的那个值的index</div><div class="line">let minX = arrX[0]</div><div class="line">let index = 0</div><div class="line">for(var i = 0; i &lt; arrX.length; i++)&#123;</div><div class="line">    if (arrX[i] &lt; minX) &#123;</div><div class="line">        minX = arrX[i]</div><div class="line">        index = i</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//根据index获取x最小的那个对象</div><div class="line">let minObj = arr[index]</div></pre></td></tr></table></figure></p>
-<p>这么写有问题么，其实逻辑什么的也没啥问题，但是就是看着麻烦，类似上面的这种还有很多，其实项目里面也用了babel，es6的语法都可以放心大胆的写了，但是实际上还是有很多es5语法可以一部到位的，结果还是自己写了一大堆实现，看着确实有点累，尤其是逻辑稍微复杂一些的场景下，代码能精简就要精简，虽然是语法糖，但是起码也好看很多啊，我自己简单实现了一下上面的需求，代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">let arr = [</div><div class="line">    &#123;</div><div class="line">        x:1,</div><div class="line">        y:2</div><div class="line">    &#125;,&#123;</div><div class="line">        x:16,</div><div class="line">        y:6</div><div class="line">    &#125;,&#123;</div><div class="line">        x:2,</div><div class="line">        y:6</div><div class="line">    &#125;,&#123;</div><div class="line">        x:9,</div><div class="line">        y:3</div><div class="line">    &#125;,</div><div class="line">]</div><div class="line"></div><div class="line">let minObj = arr.reduce((pre, cur) =&gt; &#123;</div><div class="line">    return cur.x &lt; pre.x ? cur : pre</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>其实还想起来一个，就是上次讲需求，a，b两个请求，a请求特别慢，但是b请求的处理逻辑需要用到a请求的返回结果，又觉得如果把b请求写到a请求的回调里面效率比较低，写了个轮询去不断的查看a请求的有没有结束，听完不太理解，这个为啥不能用promise.all去并发呢，再或者为啥不用Object.definepropety写在get set里面<br>现在成天讲es6，es7，确实es6改变很大，确实需要花大力气学习，但是基本功也不能懈怠，有则改之无则加勉把。</p>
+        <p>puppeteer是google发布的可以用来操作chrome的node库<br><a id="more"></a><br>puppeteer是google发布的可以用来操作chrome的node库，因为上班的地方不容许用外网，但是碰到有些问题，又必须要查一下文档，但是网上下载下来的文档不是版本太久就是版本太久，所以就想着能不能自己爬一下常用的一些文档的官网，在网上找了下工具，最后发现puppeteer非常合适，以下为使用puppeteer来爬取vue官网教程的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">const puppeteer = require(&apos;puppeteer&apos;);</div><div class="line"></div><div class="line">const timeout = function (delay) &#123;</div><div class="line">	return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">		setTimeout(() =&gt; &#123;</div><div class="line">			resolve()</div><div class="line">		&#125;, delay)</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">puppeteer.launch().then(async browser =&gt; &#123;</div><div class="line">	let page = await browser.newPage()</div><div class="line">    //有些请求可能pengding的时间比较长，但是又不影响页面显示，所以使用waitUntil</div><div class="line">	await page.goto(&apos;https://cn.vuejs.org/v2/guide/&apos;, &#123;</div><div class="line">		waitUntil: &apos;networkidle2&apos;</div><div class="line">	&#125;)</div><div class="line">    //等待一下，不等待的话页面可能还没有渲染号</div><div class="line">	await Promise.resolve(timeout(2000))</div><div class="line">	let aTags = await page.evaluate(() =&gt; &#123;</div><div class="line">		let as = [...document.querySelectorAll(&apos;.menu-root li .sidebar-link&apos;)];</div><div class="line">		return as.map((a) =&gt; &#123;</div><div class="line">			return &#123;</div><div class="line">				href: a.href.trim(),</div><div class="line">                //如果路径中出现特殊符号可能会出错</div><div class="line">				name: a.text.replace(/[/&amp;]/g, &apos;&apos;)</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div><div class="line"></div><div class="line">	for (var i = 0; i &lt; aTags.length; i++) &#123;</div><div class="line">		page = await browser.newPage()</div><div class="line">		var a = aTags[i];</div><div class="line">		await page.goto(a.href);</div><div class="line">        //用来隐藏广告和header等不用的内容</div><div class="line">		await page.mainFrame().addStyleTag(&#123;</div><div class="line">			content: &apos;#header,.main-sponsor,#ad &#123; display: none; &#125;&apos;</div><div class="line">		&#125;)</div><div class="line">		await Promise.resolve(timeout(2000))</div><div class="line">		await page.pdf(&#123;</div><div class="line">			path: `./assert/$&#123;i + 1&#125;、$&#123;a.name&#125;.pdf`,</div><div class="line">			format: &apos;A2&apos;,</div><div class="line">		&#125;)</div><div class="line">		page.close()</div><div class="line">	&#125;</div><div class="line">	browser.close()</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -320,17 +318,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/26/下载/" rel="next" title="代替提交form下载文件的办法">
-                <i class="fa fa-chevron-left"></i> 代替提交form下载文件的办法
+              <a href="/2017/12/11/es5中array新增方法reduce的用法/" rel="next" title="es5中array新增方法reduce的用法">
+                <i class="fa fa-chevron-left"></i> es5中array新增方法reduce的用法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/30/puppeteer初试/" rel="prev" title="puppeteer初试">
-                puppeteer初试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
