@@ -84,16 +84,20 @@
 
 
 
-<meta name="description" content="angular2">
+<meta name="description" content="各个浏览器下文件上传输入框的样式区别比较大，而且不够美观，现有的文件上传组件又经常出问题，满足不了日常的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular2工程构建">
-<meta property="og:url" content="http://yoursite.com/2016/10/08/angular/index.html">
+<meta property="og:title" content="文件上传样式修改">
+<meta property="og:url" content="http://yoursite.com/2016/04/03/文件上传样式修改/index.html">
 <meta property="og:site_name" content="rockToDog">
-<meta property="og:description" content="angular2">
-<meta property="og:updated_time" content="2017-10-31T13:36:15.321Z">
+<meta property="og:description" content="各个浏览器下文件上传输入框的样式区别比较大，而且不够美观，现有的文件上传组件又经常出问题，满足不了日常的">
+<meta property="og:image" content="http://yoursite.com/2016/04/03/文件上传样式修改/1.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/03/文件上传样式修改/2.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/03/文件上传样式修改/3.png">
+<meta property="og:updated_time" content="2018-04-12T14:33:45.523Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular2工程构建">
-<meta name="twitter:description" content="angular2">
+<meta name="twitter:title" content="文件上传样式修改">
+<meta name="twitter:description" content="各个浏览器下文件上传输入框的样式区别比较大，而且不够美观，现有的文件上传组件又经常出问题，满足不了日常的">
+<meta name="twitter:image" content="http://yoursite.com/2016/04/03/文件上传样式修改/1.png">
 
 
 
@@ -114,9 +118,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/08/angular/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/04/03/文件上传样式修改/"/>
 
-  <title> angular2工程构建 | rockToDog </title>
+  <title> 文件上传样式修改 | rockToDog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +250,7 @@
             
             
               
-                angular2工程构建
+                文件上传样式修改
               
             
           </h1>
@@ -258,8 +262,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T00:05:02+08:00" content="2016-10-08">
-              2016-10-08
+            <time itemprop="dateCreated" datetime="2016-04-03T12:24:00+08:00" content="2016-04-03">
+              2016-04-03
             </time>
           </span>
 
@@ -286,9 +290,16 @@
       
 
       
-        <p>angular2<br><a id="more"></a><br>前端使用angular2，后端使用nodeJs<br>前端使用angular cli进行构建，后端通过express进行构建<br>angular2 工程启动 ng –server，监听4200端口<br>express 工程启动 npm start，监听3000端口</p>
-<p>修改angular2 工程build输出目录至后端express工程的pubulic文件夹下（指定的静态文件存放位置）<br>在angular2 工程中新增prxy文件，实现在启动前端工程时，将前端发送至4200端口的请求转发至3000端口，从而不用每次都building</p>
-<p>花了一天时间，遇到的坑主要是node中path的问题，在router文件夹下面使用相对路径不报错，在另外新建的文件夹下面使用相对路径就报错<br>解决办法 全部是用绝对路径。</p>
+        <p>各个浏览器下文件上传输入框的样式区别比较大，而且不够美观，现有的文件上传组件又经常出问题，满足不了日常的<br><a id="more"></a></p>
+<h3 id="1-为什么要修改文件上传的样式"><a href="#1-为什么要修改文件上传的样式" class="headerlink" title="1 为什么要修改文件上传的样式"></a>1 为什么要修改文件上传的样式</h3><p>各个浏览器下文件上传输入框的样式区别比较大，而且不够美观，现有的文件上传组件又经常出问题，满足不了日常需求，经常出现各种问题，还不如自己写一个。<br>目前文件上传实现主要有两种方式，一种是提交form表单，搭配iframe，一个是使用xhr2以及h5的新api FormData对象实现2，第一种浏览器兼容性比较好，但是写起来比较麻烦，第二种写起来简单，和传统的ajax请求一样，回调好处理，但是存在浏览器兼容性的问题，在这里不过多叙述，今天，我们只关注如何将各个浏览器上面的文件上传图标弄一样</p>
+<h3 id="2-先看看各个浏览器下文件上传输入框都长什么样子"><a href="#2-先看看各个浏览器下文件上传输入框都长什么样子" class="headerlink" title="2 先看看各个浏览器下文件上传输入框都长什么样子"></a>2 先看看各个浏览器下文件上传输入框都长什么样子</h3><p>ie和edge下面基本是一样的 如下图<br><img src="/2016/04/03/文件上传样式修改/1.png" alt="1"></p>
+<p>chrome下面<br><img src="/2016/04/03/文件上传样式修改/2.png" alt="1"></p>
+<p>可以看出来，这两种不仅样子不一样，操作也有区别，ie下面，左边的是输入框，我们双击可以弹出选择文件的对话框，选择完文件后，文件的名称是显示在输入框里面的，而chrome下则没有输入框，只有一个选择文件的按钮，点击后弹出选择文件的对话框，选择完文件，文件的名称是显示的按钮的右边的</p>
+<p>那么，接下来的第一步，先统一他们的操作逻辑，既然chrome没有输入框，那么我们最好能将ie的输入框隐藏掉，我们先试试都有那些属性可以设置<br>先试试width， ie下面设置width，最小的时候那个输入框还是存在的，这条路显然走不通</p>
+<p>那么既然他一直存在，我们能不能换个思路，将input文件上传框隐藏掉，然后新创建一个button，点击button触发trigger一下input的click事件，那么，这样我们就只需要设置一下button的样式，不用管input了，岂不美哉，想象没美好，现实很骨干，这样做在chrome和ie下都可以成功弹出选择文件的对话框，但是在最后上传到后台的时候，ie会报拒绝访问的错误，百度之后得知ie下，必须是鼠标点击input选择文件才能上传。。。。</p>
+<p>这样不行的话，我们试下给input外面加上一个wrapper，将input包起来，然后外面的wrapper设置成overflow hidden，点击wrapper，实际上就是点击input，我们试试</p>
+<p>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    #uploadArea &#123;</div><div class="line">        width: 100px;</div><div class="line">        position: relative;</div><div class="line">        overflow: hidden;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    a &#123;</div><div class="line">        height: 44px;</div><div class="line">        display: block;</div><div class="line">        background: url(../img/upload_btn.jpg) no-repeat left 15px;</div><div class="line">        padding-left: 20px;</div><div class="line">        line-height: 44px;</div><div class="line">        color: #29bfbc;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    #imageFile &#123;</div><div class="line">        position: absolute;</div><div class="line">        right: 0px;</div><div class="line">        top: 0px;</div><div class="line">        margin: 0px;</div><div class="line">        padding: 0px;</div><div class="line">        opacity: 0;</div><div class="line">        z-index: 1;</div><div class="line">        height: 100%;</div><div class="line">        width: 100%;</div><div class="line">        filter: alpha(opacity=0);</div><div class="line">        font-size: 100px;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;div id=&quot;uploadArea&quot;&gt;</div><div class="line">    &lt;a id=&quot;upload&quot; href=&quot;javascript:void(0);&quot;&gt;  </div><div class="line">        上传图片  </div><div class="line">        &lt;input id=&quot;imageFile&quot; type=&quot;file&quot; name=&quot;imageFile&quot; onchange=&quot;PathChanged();&quot; /&gt;  </div><div class="line">    &lt;/a&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>这段代码里面，其实最关键的是a标签设置的font-size=100px，可以看到设置之后的input其实是非常大的，只不过我们通过设置外面的a标签的宽高，以及相应的position，让我们就能点击到的只有文件上传那个按钮，从而，我们只需要修改外面的a标签的样式，就可以了<br><img src="/2016/04/03/文件上传样式修改/3.png" alt="1"></p>
 
       
     </div>
@@ -320,16 +331,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/08/spider/" rel="next" title="爬虫">
-                <i class="fa fa-chevron-left"></i> 爬虫
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/31/elementUI/" rel="prev" title="elementUI中碰到的一些问题">
-                elementUI中碰到的一些问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/25/割腕者的天堂/" rel="prev" title="割腕者的天堂">
+                割腕者的天堂 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -437,7 +444,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么要修改文件上传的样式"><span class="nav-number">1.</span> <span class="nav-text">1 为什么要修改文件上传的样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-先看看各个浏览器下文件上传输入框都长什么样子"><span class="nav-number">2.</span> <span class="nav-text">2 先看看各个浏览器下文件上传输入框都长什么样子</span></a></li></ol></div>
             
           </div>
         </section>
