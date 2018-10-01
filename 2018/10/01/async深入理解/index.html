@@ -1,0 +1,574 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="技术," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="深入理解async">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解async">
+<meta property="og:url" content="http://yoursite.com/2018/10/01/async深入理解/index.html">
+<meta property="og:site_name" content="rockToDog">
+<meta property="og:description" content="深入理解async">
+<meta property="og:updated_time" content="2018-10-01T06:01:22.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解async">
+<meta name="twitter:description" content="深入理解async">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/01/async深入理解/"/>
+
+  <title> 深入理解async | rockToDog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">rockToDog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入理解async
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-01T00:05:02+08:00" content="2018-10-01">
+              2018-10-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>深入理解async<br><a id="more"></a></p>
+<p>###async函数的语法<br>我们先看看async的语法，一般的用法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 1秒过后打印delay 1 seconds， 2秒过后打印delay 2 seconds，3秒过后打印delay 3 seconds</div><div class="line"></div><div class="line">let timeout = (delay) =&gt; &#123;</div><div class="line">    return new Promise((res, rej) =&gt; &#123;</div><div class="line">        setTimeout(res, delay*1000)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 必须有async标志，没有则函数体内不能使用await</div><div class="line">async function delayLog () &#123;</div><div class="line">    // await后一般是一个promise，如果不是prommise，则会用Promise.resolve返回一个promise</div><div class="line">    await timeout(1)</div><div class="line">    console.log(&apos;delay 1 seconds&apos;)</div><div class="line">    await timeout(1)</div><div class="line">    console.log(&apos;delay 2 seconds&apos;)</div><div class="line">    await timeout(1)</div><div class="line">    console.log(&apos;delay 3 seconds&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">delayLog()</div></pre></td></tr></table></figure></p>
+<p>以上，如果我们要按照最常规的回调函数写，则非常容易陷入回调地狱<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var delayLog = function () &#123;</div><div class="line">    setTimeout(function () &#123;</div><div class="line">        console.log(&apos;delay 1 seconds&apos;)</div><div class="line">        setTimeout(function () &#123;</div><div class="line">            console.log(&apos;delay 2 seconds&apos;)</div><div class="line">            setTimeout(function () &#123;</div><div class="line">                console.log(&apos;delay 3 seconds&apos;)</div><div class="line">            &#125;, 1*1000)</div><div class="line">        &#125;, 1*1000)</div><div class="line">    &#125;, 1*1000)</div><div class="line">&#125;</div><div class="line"></div><div class="line">delayLog()</div></pre></td></tr></table></figure></p>
+<p>可以看出async语法简洁明了，代码结构看起来非常像同步代码，之前有一家面试的时候问到，面试的说async是同步的，如果明白了async函数的原理，我们就不会纠结它是同步的还是异步的</p>
+<p>###generator函数<br>一般介绍async函数的书上面都会说async函数是generator函数的语法糖，那么，我们先来看看generator函数，用法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">var timeout = (delay) =&gt; &#123;</div><div class="line">    return new Promise((res, rej) =&gt; &#123;</div><div class="line">        setTimeout(res, delay*1000)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line">var gen = function * () &#123;</div><div class="line">  yield timeout(1)</div><div class="line">  console.log(&apos;delay 1 seconds&apos;)</div><div class="line">  yield timeout(1)</div><div class="line">  console.log(&apos;delay 2 seconds&apos;)</div><div class="line">  yield timeout(1)</div><div class="line">  console.log(&apos;delay 3 seconds&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 手动执行generator函数，因为timeout函数返回的是一个promise对象，所以可以调用g.next().value.then，我们在第一个promise的状态resolved的时候，执行第二个promise。。。</div><div class="line">var g = gen()</div><div class="line">g.next().value.then(() =&gt; &#123;</div><div class="line">    g.next().value.then(() =&gt; &#123;</div><div class="line">        g.next().value.then(() =&gt; &#123;</div><div class="line">            g.next()</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">//更进一步，我们把上面的这个执行器写成自动执行的</div><div class="line">var autoNext = function (gen) &#123;</div><div class="line">    var g = gen()</div><div class="line"></div><div class="line">    function next () &#123;</div><div class="line">        var res = g.next()</div><div class="line">        if (res.done) &#123;</div><div class="line">            return res.value</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        res.value.then(function () &#123;</div><div class="line">            next()</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    next()</div><div class="line">&#125;</div><div class="line">autoNext(gen)</div></pre></td></tr></table></figure></p>
+<p>我们现在可以非常清楚的看到，generator函数相比async函数除了把async，await换成*，yield之外，唯一有区别的就是它下面的执行，所以我们也可以简单的认为，async函数就是多了一个自动执行器的generator，而且我们从上面的函数也可以看出，为什么async函数await后面需要的是一个promise对象，因为next().value返回的是yield后面的执行结果</p>
+<p>###thunk函数和generator函数处理异步操作<br>其实generator函数也可以和thunk函数一起使用，就是在yield后面跟上一个Thunk函数，也可以实现自动执行，处理异步操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">// thunk函数生成器</div><div class="line">var thunkMaker = function (fn) &#123;</div><div class="line">    return function (...args) &#123;</div><div class="line">        return function (cb) &#123;</div><div class="line">            fn.call(this, ...args, cb)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var timout = function (delay, cb) &#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">        cb &amp;&amp; cb()</div><div class="line">    &#125;, delay*1000)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 生成thunk函数</div><div class="line">var timoutThunk = thunkMaker(timout)</div><div class="line"></div><div class="line">var gen = function * () &#123;</div><div class="line">    yield timoutThunk(1)</div><div class="line">    console.log(&apos;delay 1 seconds&apos;)</div><div class="line">    yield timoutThunk(1)</div><div class="line">    console.log(&apos;delay 2 seconds&apos;)</div><div class="line">    yield timoutThunk(1)</div><div class="line">    console.log(&apos;delay 3 seconds&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 执行器</div><div class="line">var autoNext = function (gen) &#123;</div><div class="line">    var g = gen()</div><div class="line"></div><div class="line">    function next() &#123;</div><div class="line">        var res = g.next()</div><div class="line">        if (res.done) return</div><div class="line">        res.value(next)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    next()</div><div class="line">&#125;</div><div class="line">autoNext(gen)</div></pre></td></tr></table></figure></p>
+<p>###generator实现简单理解<br>以上，我们了解到async函数是从generator函数演变而来，那么generator函数又是如何实现的呢，我们可以简单的看一下babel是如何对generator函数转码的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">// 转码前</div><div class="line">var gen = function * () &#123;</div><div class="line">    yield timoutThunk(1)</div><div class="line">    console.log(&apos;delay 1 seconds&apos;)</div><div class="line">    yield timoutThunk(1)</div><div class="line">    console.log(&apos;delay 2 seconds&apos;)</div><div class="line">    yield timoutThunk(1)</div><div class="line">    console.log(&apos;delay 3 seconds&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 转码后</div><div class="line">var gen = /*#__PURE__*/regeneratorRuntime.mark(function gen() &#123;</div><div class="line">    return regeneratorRuntime.wrap(function gen$(_context) &#123;</div><div class="line">        while (1) &#123;</div><div class="line">            switch (_context.prev = _context.next) &#123;</div><div class="line">                case 0:</div><div class="line">                    _context.next = 2;</div><div class="line">                    return timoutThunk(1);</div><div class="line"></div><div class="line">                case 2:</div><div class="line">                    console.log(&apos;delay 1 seconds&apos;);</div><div class="line">                    _context.next = 5;</div><div class="line">                    return timoutThunk(1);</div><div class="line"></div><div class="line">                case 5:</div><div class="line">                    console.log(&apos;delay 2 seconds&apos;);</div><div class="line">                    _context.next = 8;</div><div class="line">                    return timoutThunk(1);</div><div class="line"></div><div class="line">                case 8:</div><div class="line">                    console.log(&apos;delay 3 seconds&apos;);</div><div class="line"></div><div class="line">                case 9:</div><div class="line">                case &apos;end&apos;:</div><div class="line">                    return _context.stop();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;, gen, this);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>最直观的就是转码后通过switch case语句把原来的函数分成了好几段；执行gen()，最终返回的是gen$函数，我们用简单执行分析一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var g = gen() // 返回了gen$函数</div><div class="line">g.next() // 相当于gen$(&#123;prev:0 , next: 0&#125;) 执行第一次 next变成2 返回timoutThunk(1)的执行结果，因为timoutThunk(1)是一个thunk函数，所以当执行第二次gen$的时候，case2的代码相当于是在第一次执行完后返回的timoutThunk(1)函数的结果的回调函数里面执行，如下</div><div class="line">timoutThunk(1)(function()&#123;</div><div class="line">    // case 2 代码</div><div class="line">&#125;)</div><div class="line"></div><div class="line">//一直执行g.next() 相当于不停改变prev的值，再通过switch判断，执行相应语句</div></pre></td></tr></table></figure></p>
+<p>async函数基本就是这样，它是回调函数的另外一种写法，和使用ajax把async属性修改为false完全不一样，后者将请求方式修改为同步，如果请求阻塞，则后续代码不会执行，async函数则不会阻塞函数外代码的执行，以上</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/03/请求转发/" rel="next" title="使用nodeJs转发前台请求，解决开发跨域问题">
+                <i class="fa fa-chevron-left"></i> 使用nodeJs转发前台请求，解决开发跨域问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rockToDog" />
+          <p class="site-author-name" itemprop="name">rockToDog</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rockToDog</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
